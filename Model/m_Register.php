@@ -18,7 +18,7 @@ class Register
 		$db = DB::getInstance();
 
 		$req = $db->query("INSERT INTO user
-			VALUES (NULL,'2','".$email."','".$username."', '".$password."','','','','','','' );
+			VALUES (NULL,'2','".$email."','".$username."', '".$password."','','','','','default.png','default.png' );
 			");
 
 		return $req;

@@ -6,21 +6,15 @@
 			require_once('View/v_Login.php');
 		}
 
-		public function error(){
-			require_once('views/pages/error.php');
-		}
 		public function authentication(){
-			if (!isset($_GET['username'])) {
-			}
 			if(Login::find($_GET['username'],$_GET['password'])==0){
-				$error="username atau password  tidak valid";
-				require_once('View/v_Login.php');
+				header("location:?controller=Login&action=login&error= username or password is not available");
 			}else if(Login::find($_GET['username'],$_GET['password'])==1){
 				$_SESSION['login']=$_GET['username'];
-				header("location:index.php?controller=Home&action=home");
+				header("location:index.php?controller=Home&action=home&success= You have been signed in successfully!");
 			}elseif(Login::find($_GET['username'],$_GET['password'])==2){
 				$_SESSION['login']=$_GET['username'];
-				header("location:index.php?controller=Home&action=home");
+				header("location:index.php?controller=Home&action=home&success= You have been signed in successfully!");
 			}
 
 		}

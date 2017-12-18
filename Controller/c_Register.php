@@ -7,7 +7,7 @@ Class RegisterController{
 
 	public function register(){
 		$register = Register::register($_POST["email"],$_POST["username"],$_POST["password"]);
-		header("location:index.php?controller=Login&action=login");
+		header("location:index.php?controller=Login&action=login&success= You have been signed up successfully!");
 	}
 
 

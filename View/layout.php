@@ -13,6 +13,24 @@
   <script src="assets/js/script.js" type="text/javascript"></script>
 </head>
 <body>
+  <?php
+ if (isset($_GET['success'])) : ?>
+     <div class="alert alert-success" role="alert" style="color: green;opacity: 0.9">
+       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+         <span aria-hidden="true">&times;</span>
+       </button>
+       <strong>SUCCESS!</strong> <?=($_GET['success']);?>
+     </div>
+ <?php endif;?>
+ <?php
+if (isset($_GET['error'])) : ?>
+    <div class="alert alert-danger" role="alert" style="color: red;opacity: 0.9">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <strong>WARNING!</strong> <?=($_GET['error']);?>
+    </div>
+<?php endif;?>
   <!-- navbar top-->
         <?php if(isset($_SESSION['login'])){ ?>
           <nav class="navbar navbar-inverse navbar-fixed-top">

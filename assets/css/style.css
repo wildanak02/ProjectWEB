@@ -297,3 +297,8 @@ aside{
   top: 50%;
   transform: translateY(-50%);
 }
+
+/*alert*/
+.alert {
+  margin-top: 52px;
+}
