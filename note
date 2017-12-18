@@ -1,0 +1,1 @@
+select t.teamName, t.teamMember, e.eventName from team t join ptcp p on t.idTeam=p.idTeam join event e on p.idEvent = e.idEvent
