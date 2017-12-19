@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 15 Des 2017 pada 12.52
+-- Generation Time: 19 Des 2017 pada 17.19
 -- Versi Server: 10.1.21-MariaDB
 -- PHP Version: 7.1.1
 
@@ -34,21 +34,22 @@ CREATE TABLE `event` (
   `date` date NOT NULL,
   `location` varchar(60) NOT NULL,
   `description` varchar(255) NOT NULL,
-  `image` varchar(255) NOT NULL
+  `image` varchar(255) NOT NULL,
+  `slot` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `event`
 --
 
-INSERT INTO `event` (`idEvent`, `eventName`, `type`, `organizer`, `date`, `location`, `description`, `image`) VALUES
-(2, 'Major League', 2, 'Valve', '2017-12-28', 'Bangkok', 'Dota 2 Tournament', 'event2.png'),
-(3, 'ESL One', 1, 'Valve', '2017-12-16', 'Manila', 'Tournament CS', 'event4.jpg'),
-(4, 'ESL Two', 1, 'valve', '2017-12-21', 'johor', 'turnamen CS 2', 'event3.png'),
-(5, 'ESL Three', 1, 'valve', '2017-12-22', 'jakarta', 'turnament ke tiga', 'event2.png'),
-(6, 'ESL Four', 1, 'valve', '2017-12-06', 'banyuwangi', 'deskripsinya', 'event6.jpg'),
-(7, 'ESL Five', 1, 'valve', '2017-12-02', 'jajal', 'deskripsi nya ini banyak sekali sehingga menghabiskan banyak text', 'event8.png'),
-(8, 'CS', 1, 'cs', '2017-12-29', 'jember', 'tes', 'event4.jpg');
+INSERT INTO `event` (`idEvent`, `eventName`, `type`, `organizer`, `date`, `location`, `description`, `image`, `slot`) VALUES
+(10, 'CS:GO Events 1', 1, 'Valve', '2017-12-21', 'Bangkok', 'Tournament CS', 'event7.jpg', 0),
+(11, 'CS:GO Events 2', 1, 'valve', '2017-12-23', 'Jakarta', 'Tournament CS 2', 'event6.jpg', 60),
+(12, 'CS:GO Events 3', 1, 'valve', '2017-12-15', 'hamburg', 'Tournament CS 3', 'event5.jpg', 20),
+(13, 'CS:GO Events 4', 1, 'Valve', '2017-12-12', 'Manila', 'Tournament CS 4', 'event1.png', 54),
+(14, 'Dota 2 Event 1', 2, 'Major', '2017-12-16', 'Jember', 'Tournament dota Major', 'event7.jpg', 20),
+(15, 'Dota 2 Event 2', 2, 'Minor', '2017-12-21', 'Solo', 'Dota 2 ', 'event11.jpg', 29),
+(16, 'Major League', 2, 'Valve', '2017-12-23', 'kota', 'This is Major league', 'event12.png', 12);
 
 -- --------------------------------------------------------
 
@@ -63,6 +64,17 @@ CREATE TABLE `ptcp` (
   `joinDate` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data untuk tabel `ptcp`
+--
+
+INSERT INTO `ptcp` (`idPtcp`, `idTeam`, `idEvent`, `joinDate`) VALUES
+(6, 4, 11, '2017-12-19'),
+(7, 5, 11, '2017-12-19'),
+(8, 10, 11, '2017-12-19'),
+(9, 11, 15, '2017-12-19'),
+(10, 10, 15, '2017-12-19');
+
 -- --------------------------------------------------------
 
 --
@@ -75,6 +87,16 @@ CREATE TABLE `team` (
   `teamName` varchar(60) NOT NULL,
   `teamMember` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `team`
+--
+
+INSERT INTO `team` (`idTeam`, `idUser`, `teamName`, `teamMember`) VALUES
+(4, 10, 'Fnatic A', 'Beya\r\nWildan\r\nFeril\r\nThoriq'),
+(5, 10, 'Fnatic B', 'Coba\r\nCoba2\r\nCoba3\r\nCoba4\r\nCoba5'),
+(10, 9, 'Virtus Pro A', '1,2,3,4,5'),
+(11, 9, 'Virtus Pro B', '6,7,8,9,10');
 
 -- --------------------------------------------------------
 
@@ -102,8 +124,8 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`idUser`, `level`, `email`, `username`, `password`, `firstName`, `lastName`, `dateBirth`, `location`, `picture`, `teamLogo`) VALUES
 (1, 1, 'admin@evo.com', 'admin', 'admin', 'admin', 'admin', '2017-12-01', 'banyuwangi', '', ''),
-(2, 2, 'user@gmail.com', 'user', 'user', 'user', '1', '2017-12-09', 'singapore', '2.png', '7.png'),
-(3, 2, 'wildan@gmail.com', 'wildan', 'wildan', 'wildan', 'akbar', '2017-12-21', 'indonesia', 'boy.png', '2.png');
+(9, 2, 'user@gmail.com', 'user', 'user', 'user', 'hehe', '2017-11-30', 'indonesia', 'boy-1.png', 'teamlogo6.png'),
+(10, 2, 'coba@gmail.com', 'coba', 'coba', 'coba2', 'hehe3', '2017-12-26', 'indonesia', 'boy.png', 'teamlogo2.png');
 
 --
 -- Indexes for dumped tables
@@ -141,22 +163,22 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `event`
 --
 ALTER TABLE `event`
-  MODIFY `idEvent` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `idEvent` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `ptcp`
 --
 ALTER TABLE `ptcp`
-  MODIFY `idPtcp` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idPtcp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `team`
 --
 ALTER TABLE `team`
-  MODIFY `idTeam` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idTeam` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

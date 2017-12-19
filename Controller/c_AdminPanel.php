@@ -2,6 +2,7 @@
 Class AdminPanelController{
 
 	public function home(){
+		$ptcps=Ptcp::adminEvent();
 		$users=AdminUser::viewUser();
 		$events=AdminEvent::viewEvent();
 		require_once("View/v_AdminPanel.php");
@@ -51,7 +52,7 @@ Class AdminPanelController{
 		$path = "Images/EventImg/".$newimage;
 // Proses upload
 		if (move_uploaded_file($tmp, $path)) {
-		$user= AdminEvent::tambahEvent($_POST["eventName"],$_POST["type"],$_POST["organizer"],$_POST["date"],$_POST["location"],$_POST["description"],$newimage);
+		$user= AdminEvent::tambahEvent($_POST["eventName"],$_POST["type"],$_POST["organizer"],$_POST["date"],$_POST["location"],$_POST["description"],$newimage,$_POST["slot"]);
 	}
 		header("location:index.php?controller=AdminPanel&action=home");
 	}
@@ -66,7 +67,7 @@ Class AdminPanelController{
 		$path = "Images/EventImg/".$newimage;
 // Proses upload
 		if (move_uploaded_file($tmp, $path)) {
-		$user= AdminEvent::editEvent($_POST["idEvent"],$_POST["eventName"],$_POST["type"],$_POST["organizer"],$_POST["date"],$_POST["location"],$_POST["description"],$newimage);
+		$user= AdminEvent::editEvent($_POST["idEvent"],$_POST["eventName"],$_POST["type"],$_POST["organizer"],$_POST["date"],$_POST["location"],$_POST["description"],$newimage,$_POST["slot"]);
 	}
 		header("location:index.php?controller=AdminPanel&action=home");
 	}
@@ -79,6 +80,11 @@ Class AdminPanelController{
 	public function hapusEvent(){
 	$posts=AdminEvent::hapus($_GET["idEvent"]);
 	header("location:index.php?controller=AdminPanel&action=home");
+}
+
+public function cancelEvent(){
+$posts=Ptcp::cancel($_GET["idPtcp"]);
+header("location:index.php?controller=AdminPanel&action=home");
 }
 }
 

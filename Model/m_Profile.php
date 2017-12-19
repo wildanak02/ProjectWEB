@@ -61,15 +61,16 @@ class Profile
 		return $req;
 	}
 
+  public static function editPwd($password)
+	{
+    $sesi = $_SESSION['login'];
 
-  public static function hapus($idProfile){
-    $db = DB::getInstance();
+		$db = DB::getInstance();
 
-    $req = $db->query("DELETE from Profile where idProfile ='$idProfile'");
+		$req = $db->query("UPDATE user SET password='".$password."' where username = '$sesi'");
+		return $req;
+	}
 
-
-      return $req;
-  }
 
 }
 

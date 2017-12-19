@@ -9,9 +9,9 @@
       <div class="profilenav">
         <nav class="navbar navbar-default sidebar">
           <ul class="nav navbar-nav nav-pills">
-            <?php foreach ($posts as $post) {?>
+            <?php foreach ($profiles as $post) {?>
             <li><img src="Images/UserPic/<?php echo $post->picture; ?>" alt="user"></li>
-            <li></li>
+            <li><a class="pwd" href="?controller=Profile&action=klikPwd">Change your password here</a></li>
             <li></li>
             <li class="active" ><a data-toggle="tab" href="#profile"><span style="font-size:16px;" class="hidden-xs glyphicon glyphicon-home"></span> Profile</a></li>
             <li ><a data-toggle="tab" href="#editprofile"><span style="font-size:16px;" class="hidden-xs  glyphicon glyphicon-pencil"></span> Edit Profile</a></li>
@@ -87,7 +87,7 @@
                 <form class="form-horizontal" method="POST" enctype="multipart/form-data">
                   <input class="hidden" name="controller" value="Profile"></input>
                   <input class="hidden" name="action" value="edit"></input>
-                    <?php foreach ($posts as $post2) {?>
+                    <?php foreach ($profiles as $post2) {?>
                   <div class="form-group form-inline">
                     <label class="control-label col-sm-2"  >First Name:</label>
                     <div class="col-sm-4">
@@ -131,28 +131,22 @@
                     <label class="control-label col-sm-2"  >Picture:</label>
                     <div class="col-sm-10">
                       <img src="Images/UserPic/<?php echo $post2->picture; ?>" alt="" width="50px" height="50px">
-                      <input type="file" name="picture" accept="image/*" id="picture">
+                      <input type="file" value="<?php echo $post2->picture; ?>" name="picture" accept="image/*" id="picture">
                     </div>
                   </div>
                   <div class="form-group">
                     <label class="control-label col-sm-2"  >My Team Logo:</label>
                     <div class="col-sm-10">
                         <img src="Images/TeamLogo/<?php echo $post2->teamLogo; ?>" alt="" width="50px" height="50px">
-                      <input type="file" name="teamLogo" accept="image/*" id="teamLogo">
+                      <input type="file" value="<?php echo $post2->teamLogo; ?>" name="teamLogo" accept="image/*" id="teamLogo">
                     </div>
                   </div>
                 <?php } ?>
-                  <div class="form-group">
-                    <div class="col-sm-10">
-                      <a href="#">Change your password here</a>
-                    </div>
-                  </div>
                   <div class="form-group">
                     <div class="col-sm-offset-10">
                       <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
                   </div>
-
                 </form>
               </div>
             </div>
@@ -163,7 +157,7 @@
             <div class="col-md-8">
               <div class="well ">
                 <table class="table .table-condensed">
-                  <a data-target="#addteammodal" data-toggle="modal" role="button" class="btn btn-success">Add Data </a>
+                  <a href="?controller=Profile&action=kliktambahTeam" role="button" class="btn btn-success">Add Team</a>
                   <thead>
                     <tr>
                       <th>Team Name</th>
@@ -173,30 +167,25 @@
                     </tr>
                   </thead>
                   <tbody>
+                    <?php foreach ($teams as $post3) {?>
                     <tr>
-                      <td>Navi A</td>
-                      <td>Will, Jony, Kundu, Tari, Cut</td>
-                      <td><a  data-target="#editteammodal" data-toggle="modal" role="button" class="btn btn-primary">Edit</a> </td>
-                      <td><a type="a" class="btn btn-danger">Delete</a> </td>
+                      <td><?php echo $post3->teamName; ?></td>
+                      <td><?php echo $post3->teamMember; ?></td>
+                      <td><a type="button" href="?controller=Profile&action=klikEditTeam&idTeam=<?php echo $post3->idTeam; ?>" class="btn btn-primary">Edit</a> </td>
+                      <td><a type="button" href="?controller=Profile&action=hapusTeam&idTeam=<?php echo $post3->idTeam; ?>" class="btn btn-danger">Delete</a> </td>
                     </tr>
-                    <tr>
-                      <td>Navi B</td>
-                      <td>Billy, Kuro, Jamput, Bile, Dudo </td>
-                      <td><a  data-target="#editteammodal" data-toggle="modal" role="button" class="btn btn-primary">Edit</a> </td>
-                      <td><a type="a" class="btn btn-danger">Delete</a> </td>
-                    </tr>
+                  <?php } ?>
                   </tbody>
                 </table>
               </div>
             </div>
           </div>
 
-          <!-- tab myteam -->
+          <!-- tab events -->
                     <div id="myevent" class="tab-pane fade">
                       <div class="col-md-8">
                         <div class="well ">
                           <table class="table .table-condensed">
-                            <a data-target="#addteammodal" data-toggle="modal" role="button" class="btn btn-success">Add Data </a>
                             <thead>
                               <tr>
                                 <th>Team Name</th>
@@ -207,20 +196,15 @@
                               </tr>
                             </thead>
                             <tbody>
+                              <?php foreach ($events as $n) { ?>
                               <tr>
-                                <td>Navi A</td>
-                                <td>Will, Jony, Kundu, Tari, Cut</td>
-                                <td>cek</td>
-                                <td>cek</td>
-                                <td><a type="a" class="btn btn-danger">Cancel Event</a> </td>
+                                <td><?php echo $n->teamName; ?></td>
+                                <td><?php echo $n->eventName; ?></td>
+                                <td><?php echo $n->date; ?></td>
+                                <td><?php echo $n->location; ?></td>
+                                <td><a type="button" href="?controller=Profile&action=cancelEvent&idPtcp=<?php echo $n->idPtcp; ?>" class="btn btn-danger">Cancel Event</a> </td>
                               </tr>
-                              <tr>
-                                <td>Navi B</td>
-                                <td>Billy, Kuro, Jamput, Bile, Dudo </td>
-                                <td>cek</td>
-                                <td>cek</td>
-                                <td><a type="a" class="btn btn-danger">Cancel Event</a> </td>
-                              </tr>
+                            <?php } ?>
                             </tbody>
                           </table>
                         </div>

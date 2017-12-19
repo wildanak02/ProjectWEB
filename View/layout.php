@@ -39,8 +39,8 @@ if (isset($_GET['error'])) : ?>
                 <a class="navbar-brand" href="?controller=Home&action=home">E-VO</a>
               </div>
               <ul class="nav navbar-nav">
-                <li><a href="?controller=EventCS&action=home">CS:GO Events</a></li>
-                <li><a href="?controller=EventDota&action=home">Dota 2 Events</a></li>
+                <li><a href="?controller=Events&action=homeCS">CS:GO Events</a></li>
+                <li><a href="?controller=Events&action=homeDota">Dota 2 Events</a></li>
                 <?php if ($_SESSION['login']=='admin'){ ?>
                   <li><a href="?controller=AdminPanel&action=home">My Panel</a></li>
                 <?php }
@@ -64,8 +64,8 @@ if (isset($_GET['error'])) : ?>
                 <a class="navbar-brand" href="?controller=Home&action=home">E-VO</a>
               </div>
               <ul class="nav navbar-nav">
-                <li><a href="?controller=EventCS&action=home">CS:GO Events</a></li>
-                <li><a href="?controller=EventDota&action=home">Dota 2 Events</a></li>
+                <li><a href="?controller=Events&action=homeCS">CS:GO Events</a></li>
+                <li><a href="?controller=Events&action=homeDota">Dota 2 Events</a></li>
               </ul>
                 <ul class="nav navbar-nav navbar-right">
           <li><a href="?controller=Login&action=login"><span class="glyphicon glyphicon-log-in"></span> Sign In/Up</a></li>;

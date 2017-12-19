@@ -75,6 +75,7 @@
                       <th>Location</th>
                       <th>Description</th>
                       <th>Event Image</th>
+                      <th>Slot</th>
                       <th></th>
                       <th></th>
                     </tr>
@@ -94,8 +95,9 @@
                       <td><?php echo $event->organizer; ?></td>
                       <td><?php echo $event->date; ?></td>
                       <td><?php echo $event->location; ?></td>
-                      <td><?php echo $event->description; ?></td>
+                      <td class="desc"><?php echo $event->description; ?></td>
                       <td class="logo_img"><img alt="Event Image" src="Images/EventImg/<?php echo $event->image; ?>" width="40px" height="40px"></td>
+                      <td><?php echo $event->slot; ?></td>
                       <td><a type="button" href="?controller=AdminPanel&action=klikEventEdit&idEvent=<?php echo $event->idEvent; ?>" class="btn btn-primary">Edit</a> </td>
                       <td><a type="button" href="?controller=AdminPanel&action=hapusEvent&idEvent=<?php echo $event->idEvent; ?>" class="btn btn-danger">Delete</a> </td>
                     </tr>
@@ -123,24 +125,17 @@
                     </tr>
                   </thead>
                   <tbody>
+                    <?php foreach ($ptcps as $ptcp) {?>
                     <tr>
-                      <td>Navi</td>
-                      <td class="logo_img"><img src="assets/images/teamlogo7.png"></td>
-                      <td>Winny, putri, lubis</td>
-                      <td>ESL One</td>
-                      <td>2017-01-02</td>
-                      <td>2018-02-03</td>
-                      <td><a type="a" class="btn btn-danger">Delete</a> </td>
+                      <td><?php echo $ptcp->teamName; ?></td>
+                      <td class="logo_img"><img src="Images/TeamLogo/<?php echo $ptcp->teamLogo; ?>"></td>
+                      <td><?php echo $ptcp->teamMember; ?></td>
+                      <td><?php echo $ptcp->eventName; ?></td>
+                      <td><?php echo $ptcp->joinDate; ?></td>
+                      <td><?php echo $ptcp->date; ?></td>
+                      <td><a type="button" href="?controller=AdminPanel&action=cancelEvent&idPtcp=<?php echo $ptcp->idPtcp; ?>" class="btn btn-danger">Delete</a> </td>
                     </tr>
-                    <tr>
-                      <td>OG</td>
-                      <td class="logo_img"><img src="assets/images/teamlogo3.png"></td>
-                      <td>Anya,Geraldine</td>
-                      <td>Major LEague</td>
-                      <td>2017-01-02</td>
-                      <td>2018-03-02</td>
-                      <td><a type="a" class="btn btn-danger">Delete</a> </td>
-                    </tr>
+                  <?php } ?>
                   </tbody>
                 </table>
               </div>

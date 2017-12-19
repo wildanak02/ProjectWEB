@@ -14,28 +14,30 @@ function call($controller, $action){
 		break;
 
 		case 'Home':
+		require_once('Model/m_Ptcp.php');
+		require_once('Model/m_Events.php');
 		$controller=new HomeController();
 		break;
 
 		case 'AdminPanel':
+		require_once('Model/m_Ptcp.php');
 		require_once('Model/m_AdminUser.php');
 		require_once('Model/m_AdminEvents.php');
 		$controller=new AdminPanelController();
 		break;
 
 		case 'Profile':
+		require_once('Model/m_Ptcp.php');
+		require_once('Model/m_Team.php');
 		require_once('Model/m_Profile.php');
 		$controller=new ProfileController();
 		break;
 
-		case 'EventCS':
-		require_once('Model/m_EventCS.php');
-		$controller=new EventCSController();
-		break;
-
-		case 'EventDota':
-		require_once('Model/m_EventDota.php');
-		$controller=new EventDotaController();
+		case 'Events':
+		require_once('Model/m_Team.php');
+		require_once('Model/m_Events.php');
+		require_once('Model/m_EventJoin.php');
+		$controller=new EventsController();
 		break;
 
 
@@ -46,10 +48,9 @@ function call($controller, $action){
 $controllers = array('Login' => ['login', 'error','authentication'],
 'Register'=>['home','register'],
 	'Home'=>['home'],
-	'AdminPanel'=>['home','klikUserEdit','tambahEvent','klikEventTambah','klikEventEdit','editUser','editEvent','hapusUser','hapusEvent'],
-	'Profile'=>['home','edit'],
-	'EventCS'=>['home'],
-	'EventDota'=>['home']
+	'AdminPanel'=>['home','klikUserEdit','tambahEvent','klikEventTambah','klikEventEdit','editUser','editEvent','hapusUser','hapusEvent','cancelEvent'],
+	'Profile'=>['home','edit','klikPwd','changepwd','kliktambahTeam','tambahTeam','klikEditTeam','editTeam','hapusTeam','cancelEvent'],
+	'Events'=>['homeCS','homeDota','homeDetail','klikJoin','join']
 	);
 
 

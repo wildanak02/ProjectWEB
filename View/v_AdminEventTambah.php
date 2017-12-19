@@ -56,6 +56,12 @@
                 <input type="file" name="image" accept="image/*">
               </div>
             </div>
+            <div class="form-group">
+              <label class="control-label col-sm-2"  >Slot:</label>
+              <div class="col-sm-10">
+                <input type="number" name="slot" class="form-control">
+              </div>
+            </div>
             <button href="?controller=AdminPanel&action=home" class="btn btn-default">Cancel</button>
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>
